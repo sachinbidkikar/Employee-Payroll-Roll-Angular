@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="main-content">
+  <div class="header-content">
+    <div class="emp-detail-text">
+      Employee Details
+      <div class="emp-count">{{employeeCount}}</div>
+    </div>
+    <a class="add-button" routerLink="/add-employee">
+      <mat-icon>person_add</mat-icon> Add Employee</a
+    >
+  </div>
+  <div class="table-main">
+    <table id="table-display" class="table">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>Actions</th>
+      </tr>
+      
+      <tr *ngFor="let employee of employeeList">
+        <td>
+          <img class="profile" src="{{employee.profilePic}}" alt="" />
+        </td>
+      <td>{{employee.name}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.department}}</td>
+        <td>{{employee.salary | currency: 'INR'}}</td>
+        <td>{{employee.startDate | date: 'MMMM d, y'}}</td>
+        <td>
+          <img id={{employee.empId}} src="../assets/icons/delete.png" alt="delete" (click)="remove(employee.empId)"/>
+          &nbsp;
+          <img id={{employee.empId}} src="../assets/icons/edit.png" alt="edit" (click)="update(employee)"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
